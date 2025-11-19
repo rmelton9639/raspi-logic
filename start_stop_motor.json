@@ -1,0 +1,66 @@
+{
+  "program_name": "Motor Start-Stop",
+  "description": "Classic motor control with start/stop buttons and latching",
+  "scan_time_ms": 50,
+  "rungs": [
+    {
+      "rung_id": 0,
+      "comment": "Start button with seal-in (latching)",
+      "instructions": [
+        {"type": "XIC", "tag": "START_BTN"},
+        {"type": "XIO", "tag": "STOP_BTN"},
+        {"type": "OTL", "tag": "MOTOR_RUN"}
+      ]
+    },
+    {
+      "rung_id": 1,
+      "comment": "Seal-in contact maintains motor running",
+      "instructions": [
+        {"type": "XIC", "tag": "MOTOR_RUN"},
+        {"type": "XIO", "tag": "STOP_BTN"},
+        {"type": "XIO", "tag": "ESTOP"},
+        {"type": "OTE", "tag": "MOTOR_RUN"}
+      ]
+    },
+    {
+      "rung_id": 2,
+      "comment": "Stop button or E-stop unlatch",
+      "instructions": [
+        {"type": "XIC", "tag": "STOP_BTN"},
+        {"type": "OTU", "tag": "MOTOR_RUN"}
+      ]
+    },
+    {
+      "rung_id": 3,
+      "comment": "Emergency stop override",
+      "instructions": [
+        {"type": "XIC", "tag": "ESTOP"},
+        {"type": "OTU", "tag": "MOTOR_RUN"}
+      ]
+    },
+    {
+      "rung_id": 4,
+      "comment": "Status LED follows motor state",
+      "instructions": [
+        {"type": "XIC", "tag": "MOTOR_RUN"},
+        {"type": "OTE", "tag": "STATUS_LED"}
+      ]
+    },
+    {
+      "rung_id": 5,
+      "comment": "Run time counter (counts seconds)",
+      "instructions": [
+        {"type": "XIC", "tag": "MOTOR_RUN"},
+        {"type": "TON", "tag": "RUN_TIMER", "preset": 1000}
+      ]
+    },
+    {
+      "rung_id": 6,
+      "comment": "Increment run hour counter",
+      "instructions": [
+        {"type": "XIC", "tag": "RUN_TIMER.DN"},
+        {"type": "CTU", "tag": "RUN_HOURS", "preset": 3600, "reset_tag": "RESET_HOURS"}
+      ]
+    }
+  ]
+}

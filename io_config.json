@@ -1,0 +1,74 @@
+{
+  "description": "GPIO configuration for Raspberry Pi ladder logic",
+  "pin_mode": "BCM",
+  "inputs": [
+    {
+      "tag": "START_BTN",
+      "pin": 17,
+      "invert": false,
+      "description": "Start pushbutton"
+    },
+    {
+      "tag": "STOP_BTN",
+      "pin": 27,
+      "invert": false,
+      "description": "Stop pushbutton"
+    },
+    {
+      "tag": "ESTOP",
+      "pin": 22,
+      "invert": false,
+      "description": "Emergency stop button"
+    },
+    {
+      "tag": "SENSOR_1",
+      "pin": 5,
+      "invert": false,
+      "description": "Generic sensor input 1"
+    },
+    {
+      "tag": "SENSOR_2",
+      "pin": 6,
+      "invert": false,
+      "description": "Generic sensor input 2"
+    }
+  ],
+  "outputs": [
+    {
+      "tag": "MOTOR_RUN",
+      "pin": 23,
+      "invert": false,
+      "description": "Motor contactor output"
+    },
+    {
+      "tag": "STATUS_LED",
+      "pin": 24,
+      "invert": false,
+      "description": "Status indicator LED"
+    },
+    {
+      "tag": "RED_LIGHT",
+      "pin": 25,
+      "invert": false,
+      "description": "Red traffic light"
+    },
+    {
+      "tag": "YELLOW_LIGHT",
+      "pin": 8,
+      "invert": false,
+      "description": "Yellow traffic light"
+    },
+    {
+      "tag": "GREEN_LIGHT",
+      "pin": 7,
+      "invert": false,
+      "description": "Green traffic light"
+    },
+    {
+      "tag": "LED",
+      "pin": 18,
+      "invert": false,
+      "description": "Simple LED for testing"
+    }
+  ]
+}

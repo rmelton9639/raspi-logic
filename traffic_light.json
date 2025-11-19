@@ -1,0 +1,113 @@
+{
+  "program_name": "Traffic Light",
+  "description": "Simple traffic light sequence controller",
+  "scan_time_ms": 50,
+  "rungs": [
+    {
+      "rung_id": 0,
+      "comment": "State 0: Red light with timer",
+      "instructions": [
+        {"type": "XIC", "tag": "STATE_0"},
+        {"type": "TON", "tag": "RED_TIMER", "preset": 5000}
+      ]
+    },
+    {
+      "rung_id": 1,
+      "comment": "Transition to State 1 (Green)",
+      "instructions": [
+        {"type": "XIC", "tag": "RED_TIMER.DN"},
+        {"type": "OTU", "tag": "STATE_0"}
+      ]
+    },
+    {
+      "rung_id": 2,
+      "comment": "Activate State 1",
+      "instructions": [
+        {"type": "XIC", "tag": "RED_TIMER.DN"},
+        {"type": "OTL", "tag": "STATE_1"}
+      ]
+    },
+    {
+      "rung_id": 3,
+      "comment": "State 1: Green light with timer",
+      "instructions": [
+        {"type": "XIC", "tag": "STATE_1"},
+        {"type": "TON", "tag": "GREEN_TIMER", "preset": 5000}
+      ]
+    },
+    {
+      "rung_id": 4,
+      "comment": "Transition to State 2 (Yellow)",
+      "instructions": [
+        {"type": "XIC", "tag": "GREEN_TIMER.DN"},
+        {"type": "OTU", "tag": "STATE_1"}
+      ]
+    },
+    {
+      "rung_id": 5,
+      "comment": "Activate State 2",
+      "instructions": [
+        {"type": "XIC", "tag": "GREEN_TIMER.DN"},
+        {"type": "OTL", "tag": "STATE_2"}
+      ]
+    },
+    {
+      "rung_id": 6,
+      "comment": "State 2: Yellow light with timer",
+      "instructions": [
+        {"type": "XIC", "tag": "STATE_2"},
+        {"type": "TON", "tag": "YELLOW_TIMER", "preset": 2000}
+      ]
+    },
+    {
+      "rung_id": 7,
+      "comment": "Transition back to State 0 (Red)",
+      "instructions": [
+        {"type": "XIC", "tag": "YELLOW_TIMER.DN"},
+        {"type": "OTU", "tag": "STATE_2"}
+      ]
+    },
+    {
+      "rung_id": 8,
+      "comment": "Activate State 0",
+      "instructions": [
+        {"type": "XIC", "tag": "YELLOW_TIMER.DN"},
+        {"type": "OTL", "tag": "STATE_0"}
+      ]
+    },
+    {
+      "rung_id": 9,
+      "comment": "Red light output",
+      "instructions": [
+        {"type": "XIC", "tag": "STATE_0"},
+        {"type": "OTE", "tag": "RED_LIGHT"}
+      ]
+    },
+    {
+      "rung_id": 10,
+      "comment": "Yellow light output",
+      "instructions": [
+        {"type": "XIC", "tag": "STATE_2"},
+        {"type": "OTE", "tag": "YELLOW_LIGHT"}
+      ]
+    },
+    {
+      "rung_id": 11,
+      "comment": "Green light output",
+      "instructions": [
+        {"type": "XIC", "tag": "STATE_1"},
+        {"type": "OTE", "tag": "GREEN_LIGHT"}
+      ]
+    },
+    {
+      "rung_id": 12,
+      "comment": "Initialize to State 0 on first scan",
+      "instructions": [
+        {"type": "XIO", "tag": "STATE_0"},
+        {"type": "XIO", "tag": "STATE_1"},
+        {"type": "XIO", "tag": "STATE_2"},
+        {"type": "OTL", "tag": "STATE_0"}
+      ]
+    }
+  ]
+}

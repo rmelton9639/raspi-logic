@@ -1,0 +1,49 @@
+{
+  "program_name": "LED Blink",
+  "description": "Simple LED blink using TON timer",
+  "scan_time_ms": 50,
+  "rungs": [
+    {
+      "rung_id": 0,
+      "comment": "Timer to create 1 second blink cycle",
+      "instructions": [
+        {"type": "XIO", "tag": "BLINK_TIMER.DN"},
+        {"type": "TON", "tag": "BLINK_TIMER", "preset": 1000}
+      ]
+    },
+    {
+      "rung_id": 1,
+      "comment": "Toggle LED state when timer completes",
+      "instructions": [
+        {"type": "XIC", "tag": "BLINK_TIMER.DN"},
+        {"type": "OSR", "tag": "BLINK_PULSE"}
+      ]
+    },
+    {
+      "rung_id": 2,
+      "comment": "LED output - toggles on pulse",
+      "instructions": [
+        {"type": "XIC", "tag": "BLINK_PULSE"},
+        {"type": "XIO", "tag": "LED"},
+        {"type": "OTE", "tag": "LED_TOGGLE"}
+      ]
+    },
+    {
+      "rung_id": 3,
+      "comment": "LED output - maintain state",
+      "instructions": [
+        {"type": "XIC", "tag": "LED_TOGGLE"},
+        {"type": "OTL", "tag": "LED"}
+      ]
+    },
+    {
+      "rung_id": 4,
+      "comment": "LED output - reset state",
+      "instructions": [
+        {"type": "XIC", "tag": "BLINK_PULSE"},
+        {"type": "XIC", "tag": "LED"},
+        {"type": "OTU", "tag": "LED"}
+      ]
+    }
+  ]
+}
