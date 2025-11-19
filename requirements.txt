@@ -1,0 +1,16 @@
+# Pi Ladder Logic Requirements
+# Core dependencies for PLC-style ladder logic on Raspberry Pi
+
+# GPIO library (only needed on actual Raspberry Pi)
+# RPi.GPIO>=0.7.0
+
+# Alternative GPIO library (optional)
+# gpiozero>=1.6.2
+
+# Web interface dependencies (optional)
+flask>=2.0.0
+flask-cors>=3.0.0
+
+# Optional: For advanced features
+# paho-mqtt>=1.6.0  # MQTT communication
+# pymodbus>=2.5.0   # Modbus TCP/RTU protocol
