@@ -47,7 +47,7 @@ Open source - use and modify as needed for your projects.
 
 ## Author
 
-Created by Russell Melton - Bridging industrial automation with embedded systems development.
+Created by Robert Scott Melton - Bridging industrial automation with embedded systems development.
 
 ---
 
